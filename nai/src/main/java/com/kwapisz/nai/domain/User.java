@@ -1,9 +1,12 @@
 package com.kwapisz.nai.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -11,7 +14,11 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private String email;
+	private String surname;
+	private int age;
+	@OneToMany
+	private List<RentedBook> rentedBooks;
+	
 	public Long getId() {
 		return id;
 	}
@@ -24,11 +31,27 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getEmail() {
-		return email;
+	public String getSurname() {
+		return surname;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public List<RentedBook> getRentedBook() {
+		return rentedBooks;
+	}
+	public void setRentedBook(List<RentedBook> rentedBook) {
+		this.rentedBooks = rentedBook;
 	}
 	
+	public void addRentedBook(RentedBook book){
+		this.rentedBooks.add(book);
+		book.setUser(this);
+	}
 }
