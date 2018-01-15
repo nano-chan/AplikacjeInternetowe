@@ -1,5 +1,6 @@
 package com.kwapisz.nai.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +12,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kwapisz.nai.domain.RentedBook;
 import com.kwapisz.nai.domain.User;
+import com.kwapisz.nai.repository.RentedBookRepository;
 import com.kwapisz.nai.repository.UserRepository;
 
 @Controller
-@RequestMapping(path = "/demo")
+@RequestMapping(path = "/")
 public class MainController {
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private RentedBookRepository rentedBookRepository;
 
-	@GetMapping(path = "/add")
-	public @ResponseBody String addNewUser(@RequestParam String name, @RequestParam String surname,
-			@RequestParam int age, @RequestParam List<RentedBook> rentedBook) {
+	
+	@GetMapping(path = "/download")
+	public String ReadyData() {
 		User user = new User();
-		user.setName(name);
-		user.setSurname(surname);
-		user.setAge(age);
+		user.setName("Ola");
+		user.setSurname("Kwiatkowska");
+		user.setAge(15);
+		List<RentedBook> rentedBook = new ArrayList<>();
+		RentedBook r1 = new RentedBook();
+		r1.setTitle("t1");
+		r1.setUser(user);
+		rentedBook.add(r1);
+		
 		user.setRentedBook(rentedBook);
 		userRepository.save(user);
-		return "Saved";
-	}
-
-	@GetMapping(path = "/all")
-	public @ResponseBody Iterable<User> getAllUsers() {
-		return userRepository.findAll();
+		rentedBookRepository.save(rentedBook);
+		return "saved";
 	}
 }

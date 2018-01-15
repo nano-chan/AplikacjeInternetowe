@@ -16,7 +16,7 @@ public class User {
 	private String name;
 	private String surname;
 	private int age;
-	@OneToMany
+	@OneToMany(mappedBy = "user")
 	private List<RentedBook> rentedBooks;
 	
 	public Long getId() {

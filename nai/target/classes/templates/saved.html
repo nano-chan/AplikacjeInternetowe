@@ -1,10 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http:/www.thymeleaf.org">
 <head>
-	<title>Getting Started: Serving Web Content</title>
+	<title>MyApp</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<p th:value="'Your age is ' + ${age}" />
+	<form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    
+	Saved.
 </body>
 </html>
