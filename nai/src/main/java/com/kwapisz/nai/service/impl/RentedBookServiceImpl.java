@@ -24,15 +24,16 @@ public class RentedBookServiceImpl implements RentedBookService{
 	}
 
 	@Override
-	public void removeRentedbook(User user, Long rentedBookId) {
-		if(user.getRentedBook().size()>1){
-			for(int i=0; i<user.getRentedBook().size(); i++){
-				if(user.getRentedBook().get(i).getId().equals(rentedBookId)){
-					user.getRentedBook().remove(i);
+	public void removeRentedbook(Long userId, Long rentedBookId) {
+		User user = userRepository.findOne(userId);
+		if(user.getRentedBooks().size()>1){
+			for(int i=0; i<user.getRentedBooks().size(); i++){
+				if(user.getRentedBooks().get(i).getId().equals(rentedBookId)){
+					user.getRentedBooks().remove(i);
 				}
 			}
 		}else{
-			user.getRentedBook().clear();
+			user.getRentedBooks().clear();
 		}
 		userRepository.save(user);
 		

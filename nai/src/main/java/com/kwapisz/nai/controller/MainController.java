@@ -37,7 +37,7 @@ public class MainController {
 		r1.setUser(user);
 		rentedBook.add(r1);
 		
-		user.setRentedBook(rentedBook);
+		user.setRentedBooks(rentedBook);
 		userRepository.save(user);
 		rentedBookRepository.save(rentedBook);
 		return "saved";

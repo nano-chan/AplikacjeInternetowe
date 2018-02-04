@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService{
 	public User updateUser(User user) {
 		User changingUser = userRepository.findOne(user.getId());
 		changingUser.setName(user.getName());
+		changingUser.setSurname(user.getSurname());
 		changingUser.setAge(user.getAge());
 		return userRepository.save(changingUser);
 	}

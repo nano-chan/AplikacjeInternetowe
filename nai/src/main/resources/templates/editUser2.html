@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<title>MyApp</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<p>
+<form th:action="@{/user}" th:method="get">
+		<button name="back">Back</button>
+</form>
+</p>
+
+Add rented book:
+<p>
+<div>
+	<form th:action="@{/rentedBook/} +${user.id}" th:object="${rentedBook}" th:method="put">
+		<div><label> Title: <input type="text" name="title"/></label></div>
+		<div><input type="submit" value="Add book"/></div>
+		
+	</form>
+</div>
+</p>
+
+Edit user:
+<div>
+	<form th:action="@{/user/}+ ${user.id}" th:object="${user}" th:method="put">
+		<div><label> Name: <input type="text" name="name" th:value="${user.name}"/></label></div>
+		<div><label> Surname: <input type="text" name="surname" th:value="${user.surname}"/></label></div>
+		<div><label> Age: <input type="number" name="age" min="7" th:value="${user.age}"/></label></div>
+		<div><input type="submit" value="Save"/></div>
+	</form>
+	<p>
+	<table>
+	Rented books:
+		<tr th:each="rentedBook : ${user.rentedBooks}">
+			<td th:text="${rentedBook.title}"></td>
+			<td>
+				<form th:action="@{/rentedBook(rentedBookId=${rentedBook.Id},userId=${user.id})}" th:method="delete" th:object="${rentedBook}">
+					<button name="remove">Delete</button>
+				</form>
+			</td>	
+		</tr>
+	</table>	
+	</p>
+</div>
+
+</body>
+</html>

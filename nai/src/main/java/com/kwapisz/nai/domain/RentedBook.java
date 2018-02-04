@@ -15,7 +15,7 @@ public class RentedBook {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String title;
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	

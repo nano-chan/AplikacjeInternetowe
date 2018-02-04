@@ -5,5 +5,5 @@ import com.kwapisz.nai.domain.User;
 
 public interface RentedBookService {
 	public void addRentedBook(User user, RentedBook rentedBook);
-	public void removeRentedbook(User user, Long rentedBookId);
+	public void removeRentedbook(Long userId, Long rentedBookId);
 }
