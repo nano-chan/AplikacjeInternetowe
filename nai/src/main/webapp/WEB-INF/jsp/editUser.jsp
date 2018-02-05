@@ -44,7 +44,7 @@
 					value="${user.surname}" /></label>
 			</div>
 			<div>
-				<label> Age: <input type="number" name="age" min="7"
+				<label> Age: <input type="number" name="age" 
 					value="${user.age}" /></label>
 			</div>
 			<div>
